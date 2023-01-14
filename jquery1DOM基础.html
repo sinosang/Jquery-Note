@@ -1,220 +1,222 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>jquery1DOM基础</title>
 
-<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
-</script>
-<script>
-// 需要写$(在document).ready.function里面
-// 或者是$(function (){})
-$(document).ready(function(){  
-  $("#hide").click(function(){
-    $(".hp").hide();
-  });
-  $("#show").click(function(){
-    $(".hp").show();
-  });
-//用于表示设置lv中的color为 red
-});
-$(function (){
-      $(".lv").css("color","red");
-  })
-//用来测试调试子元素
-  $(function (){
-      $(".first p").css("color","blue");
-  })
-  //append用于添加在末尾
-//   appendto表示将前一个括号中内容插入到后一个括号中内容里   ()-->()
-  $(function (){
-    $(".ulbtn").click(function(){
-    var $li ="<li>222</li>"
-    $(".addul").append($li)
-  });
-  })
+<head>
+  <meta charset="utf-8">
+  <title>jquery1DOM基础</title>
+
+  <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+  </script>
+  <script>
+    // 需要写$(在document).ready.function里面
+    // 或者是$(function (){})
+    $(document).ready(function () {
+      $("#hide").click(function () {
+        $(".hp").hide();
+      });
+      $("#show").click(function () {
+        $(".hp").show();
+      });
+      //用于表示设置lv中的color为 red
+    });
+    $(function () {
+      $(".lv").css("color", "red");
+    })
+    //用来测试调试子元素
+    $(function () {
+      $(".first p").css("color", "blue");
+    })
+    //append用于添加在末尾
+    //   appendto表示将前一个括号中内容插入到后一个括号中内容里   ()-->()
+    $(function () {
+      $(".ulbtn").click(function () {
+        var $li = "<li>222</li>"
+        $(".addul").append($li)
+      });
+    })
     //prepend用于插入,插入在所选元素的内部开始处    
     // prependto表示将前一个括号中内容插入到后一个括号中内容里   ()-->()
-    $(function (){
-    $(".prebtn").click(function(){
-    var $strong ="<strong>the test content</strong>"
-    $(".tprepend").prepend($strong)
-    // (tprepend内容)<---(strong内容)
-  });
-  })
+    $(function () {
+      $(".prebtn").click(function () {
+        var $strong = "<strong>the test content</strong>"
+        $(".tprepend").prepend($strong)
+        // (tprepend内容)<---(strong内容)
+      });
+    })
     //before用于插入,插入在所选元素的外部开始处
-     //insertbefore同理
-    $(function (){
-    $(".bebtn").click(function(){
-    var $strong ="<strong>the test content</strong>"
-    $(".tbefore").before($strong)
-  });
-  })
+    //insertbefore同理
+    $(function () {
+      $(".bebtn").click(function () {
+        var $strong = "<strong>the test content</strong>"
+        $(".tbefore").before($strong)
+      });
+    })
     //after用于插入,插入在所选元素的外部结尾处
-     //insertafter同理
-     $(function (){
-       $(".afbtn").click(function(){
-    var $strong ="<strong>the test content</strong>"
-    $(".tafter").after($strong)
-  });
-  })
+    //insertafter同理
+    $(function () {
+      $(".afbtn").click(function () {
+        var $strong = "<strong>the test content</strong>"
+        $(".tafter").after($strong)
+      });
+    })
 
-  //   hidden
-  $(function (){
-    $(".hinsertbtn").click(function(){
+    //   hidden
+    $(function () {
+      $(".hinsertbtn").click(function () {
         $(".insertd").hide();
-  });
-  $(".sinsertbtn").click(function(){
+      });
+      $(".sinsertbtn").click(function () {
         $(".insertd").show();
-  });
-  })
+      });
+    })
 
-// remove 表示移除
-//nth-child下标从1开始
-$(function (){
-    $(".rebtn").click(function(){
-       $(".reul li:nth-child(2)").remove();
+    // remove 表示移除
+    //nth-child下标从1开始
+    $(function () {
+      $(".rebtn").click(function () {
+        $(".reul li:nth-child(2)").remove();
+      })
     })
-})
-//empty
-$(function (){
-    $(".embtn").click(function(){
-       $(".reul li:nth-child(1)").empty();
+    //empty
+    $(function () {
+      $(".embtn").click(function () {
+        $(".reul li:nth-child(1)").empty();
+      })
     })
-})
-//clone??????????
-$(function (){
-    $(".clbtn").click(function(){
-      var $li3=$(".reul li:nth-child(1)").clone(false);
-      ($li3).appendTo("reul")
+    //clone??????????
+    $(function () {
+      $(".clbtn").click(function () {
+        var $li3 = $(".reul li:nth-child(1)").clone(false);
+        ($li3).appendTo("reul")
+      })
     })
-})
-//replacewith   似乎只能够替换成字符串之类的,无法进行实时替换
-$(function (){
-    $(".rpbtn").click(function(){
-    var  $li4=$(".reul li:nth-child(4)");
-    // var  $li5=$li4;
-    // var  $li6=$(".reul li:nth-child(6)");
-     $($li4).replaceWith("replace")
-    // console.log($li4)
-    // console.log($li6)
+    //replacewith   似乎只能够替换成字符串之类的,无法进行实时替换
+    $(function () {
+      $(".rpbtn").click(function () {
+        var $li4 = $(".reul li:nth-child(4)");
+        // var  $li5=$li4;
+        // var  $li6=$(".reul li:nth-child(6)");
+        $($li4).replaceWith("replace")
+        // console.log($li4)
+        // console.log($li6)
+      })
     })
-})
 
-  //   hidden
-  $(function (){
-    $(".hremovebtn").click(function(){
+    //   hidden
+    $(function () {
+      $(".hremovebtn").click(function () {
         $(".removed").hide();
-  });
-  $(".sremovebtn").click(function(){
+      });
+      $(".sremovebtn").click(function () {
         $(".removed").show();
-  });
-  })
-
-/*wrap  表示包裹,用于将元素用其他元素包裹,相当于加了一个div在外部
-wrapall  操作对象颠倒,all将所有元素都包裹起来
-例如wrap
-<div><p>111</p></div>
-<div><p>111</p></div>
-<div><p>111</p></div>
-
-warpall
-<div>
-   <p>111</p>
-    <p>111</p>
-    <p>111</p>
-     </div>
-     */
-$(function (){
-    $(".wrbtn").click(function(){
-    $(".wrapd").wrap('<div style="background-color:whitesmoke"></div>')
-    //(A)<----(B)
+      });
     })
-})
-//wrapinner  用于添加在行内,相当于添加一个被包裹
-$(function (){
-    $(".wrinbtn").click(function(){
-    $(".wrapind").wrap('<strong></strong>')
-    //(A)<----(B)
-    })
-})
 
-//loop  eachfunction
-//index表示下标,配合element作为this参数,表示当前元素
-//退出循环可以return false
-$(function (){
-    $(".loopbtn").click(function(){
-    $(".loopd li").each(function (index,element){
-        var txt="num:"+(index+1)+"element"
-        $(element).text(txt);
-    })
-    })
-})
-//hiden
-$(function (){
-    $(".hwlbtn").click(function(){
-        $(".wld").hide();
-  });
-  $(".swlbtn").click(function(){
-        $(".wld").show();
-  });
-  })
-
-
-
-
-</script>
-</head>
-<body>
+    /*wrap  表示包裹,用于将元素用其他元素包裹,相当于加了一个div在外部
+    wrapall  操作对象颠倒,all将所有元素都包裹起来
+    例如wrap
+    <div><p>111</p></div>
+    <div><p>111</p></div>
+    <div><p>111</p></div>
+    
+    warpall
     <div>
+       <p>111</p>
+        <p>111</p>
+        <p>111</p>
+         </div>
+         */
+    $(function () {
+      $(".wrbtn").click(function () {
+        $(".wrapd").wrap('<div style="background-color:whitesmoke"></div>')
+        //(A)<----(B)
+      })
+    })
+    //wrapinner  用于添加在行内,相当于添加一个被包裹
+    $(function () {
+      $(".wrinbtn").click(function () {
+        $(".wrapind").wrap('<strong></strong>')
+        //(A)<----(B)
+      })
+    })
 
-<p class="hp">如果你点击“隐藏” 按钮，我将会消失。</p>
-<button id="hide">隐藏</button>
-<button id="show">显示</button>
-<div class="lv">it is a test color</div>
-<div class="first">
-    <p>first's son</p>
-</div>
-</div>
-<p style="color:gray;font-size:30px">insertd</p>
-<!-- dom选择 插入节点-->
-<div class="insertd">
-<!-- append -->
-<ul class="addul">
-    <li>111</li>
-    <li>111</li>
-</ul>
-<button class="ulbtn">append</button>
-<!-- prepend -->
-<p class="tprepend">it is a content to test prepend</p>
-<button class="prebtn">prepend</button>
-<!-- before -->
-<div>
-<p class="tbefore">it is a content to test before</p>
-<button class="bebtn">before</button>
-</div>
-<!-- after -->
-<div>
-    <p class="tafter">it is a content to test after</p>
-    <button class="afbtn">after</button>
+    //loop  eachfunction
+    //index表示下标,配合element作为this参数,表示当前元素
+    //退出循环可以return false
+    $(function () {
+      $(".loopbtn").click(function () {
+        $(".loopd li").each(function (index, element) {
+          var txt = "num:" + (index + 1) + "element"
+          $(element).text(txt);
+        })
+      })
+    })
+    //hiden
+    $(function () {
+      $(".hwlbtn").click(function () {
+        $(".wld").hide();
+      });
+      $(".swlbtn").click(function () {
+        $(".wld").show();
+      });
+    })
+
+
+
+
+  </script>
+</head>
+
+<body>
+  <div>
+
+    <p class="hp">如果你点击“隐藏” 按钮，我将会消失。</p>
+    <button id="hide">隐藏</button>
+    <button id="show">显示</button>
+    <div class="lv">it is a test color</div>
+    <div class="first">
+      <p>first's son</p>
     </div>
-</div>
-<button class="hinsertbtn">hidden1</button>
-<button class="sinsertbtn">show1</button>
-<br>
-<p style="color:gray;font-size:30px">removed</p>
-<!-- dom选择 删除节点-->
-<div class="removed">
+  </div>
+  <p style="color:gray;font-size:30px">insertd</p>
+  <!-- dom选择 插入节点-->
+  <div class="insertd">
+    <!-- append -->
+    <ul class="addul">
+      <li>111</li>
+      <li>111</li>
+    </ul>
+    <button class="ulbtn">append</button>
+    <!-- prepend -->
+    <p class="tprepend">it is a content to test prepend</p>
+    <button class="prebtn">prepend</button>
+    <!-- before -->
+    <div>
+      <p class="tbefore">it is a content to test before</p>
+      <button class="bebtn">before</button>
+    </div>
+    <!-- after -->
+    <div>
+      <p class="tafter">it is a content to test after</p>
+      <button class="afbtn">after</button>
+    </div>
+  </div>
+  <button class="hinsertbtn">hidden1</button>
+  <button class="sinsertbtn">show1</button>
+  <br>
+  <p style="color:gray;font-size:30px">removed</p>
+  <!-- dom选择 删除节点-->
+  <div class="removed">
     <!-- remove -->
     <ul class="reul">
-        <li>111</li>
-        <li>211</li>
-        <li>311</li>
-        <li>411</li>
-        <li>511</li>
-        <li>611</li>
-        <li>711</li>
-        <li>811</li>
+      <li>111</li>
+      <li>211</li>
+      <li>311</li>
+      <li>411</li>
+      <li>511</li>
+      <li>611</li>
+      <li>711</li>
+      <li>811</li>
     </ul>
     <button class="rebtn">remove</button>
     <!-- detch -->
@@ -225,34 +227,35 @@ $(function (){
     <button class="clbtn">clone</button>
     <!-- replace -->
     <button class="rpbtn">replace</button>
-</div>
-<button class="hremovebtn">hidden2</button>
-<button class="sremovebtn">show2</button>
-<br>
-<p style="color:gray;font-size:30px">wrap with loop</p>
-<div class="wld">
+  </div>
+  <button class="hremovebtn">hidden2</button>
+  <button class="sremovebtn">show2</button>
+  <br>
+  <p style="color:gray;font-size:30px">wrap with loop</p>
+  <div class="wld">
     <!-- wrap -->
     <p class="wrapd">it is a test content</p>
     <button class="wrbtn">wrap</button>
     <p class="wrapind">it is a test content</p>
     <button class="wrinbtn">wrapin</button>
     <!-- for -->
-   <ul class="loopd">
-       <li></li>
-       <li></li>
-       <li></li>
-       <li></li>
-       </ul>
-       <button class="loopbtn">loop</button>
-    </div>
-       <button class="hwlbtn">hidden3</button>
-       <button class="swlbtn">show3</button>
-       <br>
+    <ul class="loopd">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <button class="loopbtn">loop</button>
+  </div>
+  <button class="hwlbtn">hidden3</button>
+  <button class="swlbtn">show3</button>
+  <br>
 
 
 
 
 
-       
+
 </body>
+
 </html>

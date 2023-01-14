@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,220 +10,222 @@
     <script>
 
 
-//字符串trim操作
- $(function () {
-            var str ="  绿叶，给你初恋般的感觉。  "
+        //字符串trim操作
+        $(function () {
+            var str = "  绿叶，给你初恋般的感觉。  "
             console.log("开始长度：" + str.length);
             $("#strf").text(str.length);
             var str = $.trim(str);
             console.log("最终长度：" + str.length);
             $("#stre").text(str.length);
         })
- //URL操作   
- $(function () {
+        //URL操作   
+        $(function () {
             var person = {
-                name:"helicopter",
-                age:25
+                name: "helicopter",
+                age: 25
             }
             var str2 = $.param(person);
             console.log(str2);
             $("#str2").text(str2);
         })
 
-//inArray
-$(function(){
+        //inArray
+        $(function () {
             var arr = [1, 2, 3, 4, 5];
             var index = $.inArray(8, arr);
-            if(index == -1){
+            if (index == -1) {
                 console.log("inArray,没有找到元素");
-            }else{
+            } else {
                 console.log("元素下标为：" + index);
             }
         })
-//merge
-$(function(){
+        //merge
+        $(function () {
             var frontEnd = ["HTML", "CSS", "JavaScript"];
             var backEnd = ["PHP", "JSP", "ASP.NET"];
             var result = $.merge(frontEnd, backEnd);
-            console.log("merge",result);
-})
-//makearray
-function test(argument) {
+            console.log("merge", result);
+        })
+        //makearray
+        function test(argument) {
             var arr = $.makeArray(arguments);
-            console.log("markarray",arr);
+            console.log("markarray", arr);
         }
- test("yes",1,{},'2iiklik',);      // ["yes", 1, Object]
-//grep
-$(function(){
+        test("yes", 1, {}, '2iiklik',);      // ["yes", 1, Object]
+        //grep
+        $(function () {
             var arr = [3, 9, 1, 12, 50, 21];
-            var result2 = $.grep(arr, function(value,index){
+            var result2 = $.grep(arr, function (value, index) {
                 return value > 10;
-            },false);
-            console.log("grep,返回>10",result2);
-})
-//each  ==for  arr操作
-$(function(){
-            var arr = ["HTML","CSS","JavaScript"];
-            $.each(arr, function(index,value){
+            }, false);
+            console.log("grep,返回>10", result2);
+        })
+        //each  ==for  arr操作
+        $(function () {
+            var arr = ["HTML", "CSS", "JavaScript"];
+            $.each(arr, function (index, value) {
                 var result3 = "下标：" + index + "，值：" + value;
-  // 等价于———var result = "下标：" + index + "，值：" + arr[index];
-                console.log("each",result3);
+                // 等价于———var result = "下标：" + index + "，值：" + arr[index];
+                console.log("each", result3);
                 var result4 = value.split("").reverse().join("");
                 arr[index] = result4;
             })
-            console.log("each+reverse",arr);
+            console.log("each+reverse", arr);
         })
 
-//each obj操作
-$(function(){
+        //each obj操作
+        $(function () {
             var person = {
-                name:"helicopter",
-                age:25,
-                hobby:"swimming"
+                name: "helicopter",
+                age: 25,
+                hobby: "swimming"
             };
-            $.each(person, function(key, value){
-                console.log("each_obj",value);
-          // console.log("each_obj",person[key]);
+            $.each(person, function (key, value) {
+                console.log("each_obj", value);
+                // console.log("each_obj",person[key]);
             })
         })
 
-//检测操作
-$(function () {
-             var fn = function(){};
-            console.log("check_isfunction",$.isFunction(fn));
-            var a = ["HTML","CSS","JavaScript"];
-            console.log("check_isarray",$.isArray(a));    //true
+        //检测操作
+        $(function () {
+            var fn = function () { };
+            console.log("check_isfunction", $.isFunction(fn));
+            var a = ["HTML", "CSS", "JavaScript"];
+            console.log("check_isarray", $.isArray(a));    //true
             var b = {};
-            console.log("check_isempty",$.isEmptyObject(b)); //true
+            console.log("check_isempty", $.isEmptyObject(b)); //true
 
             var testperson = {
-                name:"helicopter",
-                age:25,
-                hobby:"swimming"
+                name: "helicopter",
+                age: 25,
+                hobby: "swimming"
             };
-            console.log("check_isplain",$.isPlainObject(testperson));    //true
-            function Box(width, height){
+            console.log("check_isplain", $.isPlainObject(testperson));    //true
+            function Box(width, height) {
                 this.width = width;
                 this.height = height;
             }
             var box = new Box(100, 100);
-            console.log("check_isplain",$.isPlainObject(box));      //false
-})  
+            console.log("check_isplain", $.isPlainObject(box));      //false
+        })
 
-//自定义函数
-$.extend({
-     "maxNum": function(m, n){
-      return (m>n)?m:n;  
-   },
-   "minNum": function(m, n){
-      return (m<n)?m:n;
-      
-   }
-    });
-//extend_max&min
-$(function () {
-            var result5=$.maxNum(10, 5)
-            var result6=$.minNum(10, 5)
-            console.log("extend_max"+result5);
-            console.log("extend_min"+result6);
-})
+        //自定义函数
+        $.extend({
+            "maxNum": function (m, n) {
+                return (m > n) ? m : n;
+            },
+            "minNum": function (m, n) {
+                return (m < n) ? m : n;
+
+            }
+        });
+        //extend_max&min
+        $(function () {
+            var result5 = $.maxNum(10, 5)
+            var result6 = $.minNum(10, 5)
+            console.log("extend_max" + result5);
+            console.log("extend_min" + result6);
+        })
 
     </script>
 
 </head>
+
 <body>
     jquery5函数操作
     <div>————————————————————————————————————————————————</div>
     <ul>
-<li>$.trim()字符串操作<br/>
-    可以使用$.trim()方法来去除字符串首尾的空白字符。<br/>
-    <div>
-    字符串开始长度：<p id="strf"></p>
-    </div>
-    <div>
-    函数运行后长度：<p id="stre"></p>
-    </div>
-</li>
-<div>————————————————————————————————————————————————</div>
-<li>$.param()URL操作<br/>
-    可以使用$.param()方法将数组或对象转化为字符串序列,
-    以便用于URL查询字符串或AJAX请求。
-    <div>
-    URL拼接后:<p id="str2"></p>
-    </div>
-</li>
-<div>————————————————————————————————————————————————</div>
-<li>
-    数组操作
- <ul>
+        <li>$.trim()字符串操作<br />
+            可以使用$.trim()方法来去除字符串首尾的空白字符。<br />
+            <div>
+                字符串开始长度：<p id="strf"></p>
+            </div>
+            <div>
+                函数运行后长度：<p id="stre"></p>
+            </div>
+        </li>
+        <div>————————————————————————————————————————————————</div>
+        <li>$.param()URL操作<br />
+            可以使用$.param()方法将数组或对象转化为字符串序列,
+            以便用于URL查询字符串或AJAX请求。
+            <div>
+                URL拼接后:<p id="str2"></p>
+            </div>
+        </li>
+        <div>————————————————————————————————————————————————</div>
+        <li>
+            数组操作
+            <ul>
 
-    <li>$.inArray()	判断元素<br/>
-        $.inArray(value, array)<br/>
-        $.inArray()返回的是元素在数组中的位置。如果找到
-        返回的是一个大于或等于0的值下标,如果未找到,则返回-1。
-       </li><br/>
+                <li>$.inArray() 判断元素<br />
+                    $.inArray(value, array)<br />
+                    $.inArray()返回的是元素在数组中的位置。如果找到
+                    返回的是一个大于或等于0的值下标,如果未找到,则返回-1。
+                </li><br />
 
-    <li>$.merge()	合并数组<br/>
-        $.merge(arr1, arr2)<br/>
-        方法会合并arr1和arr2,然后返回新的数组。   
-    </li><br/>
+                <li>$.merge() 合并数组<br />
+                    $.merge(arr1, arr2)<br />
+                    方法会合并arr1和arr2,然后返回新的数组。
+                </li><br />
 
-    <li> $.makeArray()	转换数组<br/>
-        $.makeArray(obj)<br/>
-        $.makeArray()方法返回值是一个数组。
-        如果参数obj不是类数组对象,则返回值是一个空数组。
-    </li> <br/>
-    
-    <li> $.grep()	过滤数组  <br/>
-        $.grep(array, function(value,index){<br/>
-            ……<br/>
-        }, false)<br/>
-        第1个参数array是一个数组。</br>
-        第2个参数是一个匿名函数。该匿名函数有两个形参:value表示当前元素的“值”:index表示当前元素的“索引”。<br/>
-        第3个参数是一个布尔值。如果为false,则.grep()只会收集函数返回true的数组元素:如果为true,则.grep()只会收集函数返回false的数组元素。<br/>
-    </li> <br/>
+                <li> $.makeArray() 转换数组<br />
+                    $.makeArray(obj)<br />
+                    $.makeArray()方法返回值是一个数组。
+                    如果参数obj不是类数组对象,则返回值是一个空数组。
+                </li> <br />
 
-     <li> $.each()	遍历数组<br/>
-        $.each(array, function(index, value){<br/>
-            ……<br/>
-        })<br/>
-        第2个参数是一个匿名函数。该匿名函数有两个形参<br/>
-        index表示当前元素的“索引”,value表示当前元素的“值”。
+                <li> $.grep() 过滤数组 <br />
+                    $.grep(array, function(value,index){<br />
+                    ……<br />
+                    }, false)<br />
+                    第1个参数array是一个数组。</br>
+                    第2个参数是一个匿名函数。该匿名函数有两个形参:value表示当前元素的“值”:index表示当前元素的“索引”。<br />
+                    第3个参数是一个布尔值。如果为false,则.grep()只会收集函数返回true的数组元素:如果为true,则.grep()只会收集函数返回false的数组元素。<br />
+                </li> <br />
 
-     </li> <br/>
+                <li> $.each() 遍历数组<br />
+                    $.each(array, function(index, value){<br />
+                    ……<br />
+                    })<br />
+                    第2个参数是一个匿名函数。该匿名函数有两个形参<br />
+                    index表示当前元素的“索引”,value表示当前元素的“值”。
 
- </ul>
-</li>
-<div>————————————————————————————————————————————————</div>
-<li>$.each()对象操作<br/>
-    $.each(obj, function(key, value){<br/>
-        ……<br/>
-    })<br/>
-  
-    如果需要退出each循环,可以在回调函数中返回false即return false
-</li>
-<div>————————————————————————————————————————————————</div>
-<li>检测操作<br/>
-   <ul>
-<li>$.isFunction(obj)	判断变量是否为一个函数,返回true或false</li><br/>
-<li>$.isArray(obj)	判断变量是否为一个数组,返回true或false</li><br/>
-<li>$.isEmptyObject(obj)	判断变量是否为一个空对象,返回true或false</li><br/>
-<li>$.isPlainObject(obj)	判断变量是否为一个原始对象,返回true或false</li><br/>
-<li>$.contains(node1, node2)	判断一个DOM节点是否包含另一个DOM节点,返回true或false</li><br/>
-  </ul>
-</li>
-<div>————————————————————————————————————————————————</div>
-<li>$.extend()自定义函数<br/>
-        $.extend({<br/>
-            "函数名": function(参数){<br/>
-                ……<br/>
-            }<br/>
-        });<br/>
-  
-</li>
+                </li> <br />
+
+            </ul>
+        </li>
+        <div>————————————————————————————————————————————————</div>
+        <li>$.each()对象操作<br />
+            $.each(obj, function(key, value){<br />
+            ……<br />
+            })<br />
+
+            如果需要退出each循环,可以在回调函数中返回false即return false
+        </li>
+        <div>————————————————————————————————————————————————</div>
+        <li>检测操作<br />
+            <ul>
+                <li>$.isFunction(obj) 判断变量是否为一个函数,返回true或false</li><br />
+                <li>$.isArray(obj) 判断变量是否为一个数组,返回true或false</li><br />
+                <li>$.isEmptyObject(obj) 判断变量是否为一个空对象,返回true或false</li><br />
+                <li>$.isPlainObject(obj) 判断变量是否为一个原始对象,返回true或false</li><br />
+                <li>$.contains(node1, node2) 判断一个DOM节点是否包含另一个DOM节点,返回true或false</li><br />
+            </ul>
+        </li>
+        <div>————————————————————————————————————————————————</div>
+        <li>$.extend()自定义函数<br />
+            $.extend({<br />
+            "函数名": function(参数){<br />
+            ……<br />
+            }<br />
+            });<br />
+
+        </li>
 
     </ul>
 
 
 </body>
+
 </html>

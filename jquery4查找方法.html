@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,18 +9,18 @@
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script>
         //parent
-        $(function(){
+        $(function () {
             $("td").hover(function () {
-         $(this).parent(".select").css("background-color", "silver")
+                $(this).parent(".select").css("background-color", "silver")
             }, function () {
-        $(this).parent(".select").css("background-color", "white")
+                $(this).parent(".select").css("background-color", "white")
             })
         })
         //children
-        $(function(){
-            $("#wrapper").hover(function(){
+        $(function () {
+            $("#wrapper").hover(function () {
                 $(this).children(".select").css("color", "red");
-            },function(){
+            }, function () {
                 $(this).children(".select").css("color", "black");
             })
         })
@@ -32,33 +33,38 @@
         //     })
         // })
         //siblings
-        $(function(){
+        $(function () {
             $("#lvye").siblings().css("color", "blue");
         })
-        $(function(){
+        $(function () {
             $("#lvye").siblings(".yellow").css("color", "gray");
         })
     </script>
-<style type="text/css">
-    table, tr, td{border:1px solid silver;}
-    td
-    {
-        width:40px;
-        height:40px;
-        line-height:40px;
-        text-align:center;
-    }
-</style>
+    <style type="text/css">
+        table,
+        tr,
+        td {
+            border: 1px solid silver;
+        }
+
+        td {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
-     <div>————————————————————————————————————————————————</div>
-   
-     <h3>jquery查找方法</h3>
-     <ul>
-    <li> 1.查找祖先元素<br/>
-     $.parent(selector),选取祖先中参数为selector的部分<br/>
-     $(this).parent()表示选取当前td元素的父元素(tr),
-     但是爷元素(table)不会被选中。
+    <div>————————————————————————————————————————————————</div>
+
+    <h3>jquery查找方法</h3>
+    <ul>
+        <li> 1.查找祖先元素<br />
+            $.parent(selector),选取祖先中参数为selector的部分<br />
+            $(this).parent()表示选取当前td元素的父元素(tr),
+            但是爷元素(table)不会被选中。
             <table>
                 <tr>
                     <td>2</td>
@@ -72,43 +78,44 @@
                 </tr>
             </table>
         </li>
-    <li> 2.查找后代元素<br/>
-        a.我们可以使用children()方法来查找当前元素的“子元素”。
-        注意,children()方法只能查找子元素，不能查找其他后代元素(孙元素)。<br/>
-        b.可以使用find()方法来查找当前元素的“后代元素”
-        不仅会找到当前子元素，还能那个找到孙元素
-        <div id="wrapper">
-            <p>子元素</p>
-            <p class="select">子元素</p>
-            <div>
-                <p>孙元素</p>
-                <p class="select">孙元素</p>
+        <li> 2.查找后代元素<br />
+            a.我们可以使用children()方法来查找当前元素的“子元素”。
+            注意,children()方法只能查找子元素，不能查找其他后代元素(孙元素)。<br />
+            b.可以使用find()方法来查找当前元素的“后代元素”
+            不仅会找到当前子元素，还能那个找到孙元素
+            <div id="wrapper">
+                <p>子元素</p>
+                <p class="select">子元素</p>
+                <div>
+                    <p>孙元素</p>
+                    <p class="select">孙元素</p>
+                </div>
+                <p>子元素</p>
+                <p class="select">子元素</p>
             </div>
-            <p>子元素</p>
-            <p class="select">子元素</p>
-        </div>
-    
-    </li> 
-    <li> 3.查找所有兄弟元素<br/>
-        (1)向前查找兄弟元素:prev()、prevAll()、prevUntil()<br/>
-        (2)向后查找兄弟元素:next()、nextAll()、nextUntil()<br/>
-        (3)$().siblings(selector),除了该元素之外的其他兄弟元素<br/>
-        不带参数都变蓝色//带有class名为yellow的都变灰色
 
-        <ul>
-            <li>红"RED</li>
-            <li>橙:ORANGE</li>
-            <li class="yellow">黄:yellow</li>
-            <li id="lvye">绿:green</li>
-            <li>青:CYAN</li>
-            <li>蓝:BLUE</li>
-            <li class="yellow">紫:PURPLE</li>
-        </ul>
-    
-    </li> 
-</ul>
-     
+        </li>
+        <li> 3.查找所有兄弟元素<br />
+            (1)向前查找兄弟元素:prev()、prevAll()、prevUntil()<br />
+            (2)向后查找兄弟元素:next()、nextAll()、nextUntil()<br />
+            (3)$().siblings(selector),除了该元素之外的其他兄弟元素<br />
+            不带参数都变蓝色//带有class名为yellow的都变灰色
+
+            <ul>
+                <li>红"RED</li>
+                <li>橙:ORANGE</li>
+                <li class="yellow">黄:yellow</li>
+                <li id="lvye">绿:green</li>
+                <li>青:CYAN</li>
+                <li>蓝:BLUE</li>
+                <li class="yellow">紫:PURPLE</li>
+            </ul>
+
+        </li>
+    </ul>
+
 
 
 </body>
+
 </html>
