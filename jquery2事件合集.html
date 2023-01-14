@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jquery2事件合集</title>
+<style>
+    .content{
+        color:red;font-weight:bold;
+    }
+    body{height:1800px;}
+        #box1,#box2
+        {
+            display:inline-block;
+            width:100px;
+            height:100px;
+        }
+        #box1
+        {
+            background-color:Red;
+        }
+        #box2
+        {
+            background-color:Orange;
+            position:fixed;
+        }
+        #testhover
+        {
+            display:none;/*设置默认情况下内容不显示*/
+            padding:10px;
+            border:1px solid silver;
+            text-indent:32px;
+            width:20%;
+        }
+</style>
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+// 需要写$(在document).ready.function里面
+// 或者是$(function (){})
+$(document).ready(function(){  
+  $("#hide").click(function(){
+    $(".hp").hide();
+  });
+  $("#show").click(function(){
+    $(".hp").show();
+  });
+//用于表示设置lv中的color为 red
+});
+
+// removeAttr
+$(function (){
+       $("p").click(function(){
+   
+    $(this).removeAttr("class")
+  });
+  })
+
+//事件基础
+// ready事件：仅仅实在Dom元素加载完成后就可以执行
+// onload，要等待所有外部文件加载,只能调用一次
+// ready写法{
+  //  1.$(document).ready(function(){
+
+//     })
+        //   2.$(function(){
+
+        //   })
+// }
+    $(function(){
+        // 可以直接运行，等同与onMounted
+    console.log("ready调用测试")
+          })
+
+
+//鼠标事件   不能放在同一个function里
+$(function(){
+$("#changecolor").mousemove(function(){
+$(this).css("color","red");
+})       
+})
+$(function(){
+$("#changecolor").mouseout(function(){
+$(this).css("color","blue");
+})       
+})
+
+//键盘事件
+// keyup为每次松开键盘的时候触发的事件
+$(function(){
+$("#txt").keyup(function(){
+var str= $(this).val();
+var myregex= /^[0-9]*$/
+// 测试输入的是否是数字
+var bol=$(this).val()
+$("#num").text(str.length);
+console.log(str.length)
+// 判断
+if(myregex.test(bol)){
+    console.log("right")
+}else{
+    console.log("false")
+}
+
+})       
+})
+
+//焦点事件
+$(function(){
+     var txt =$("#search").val();
+      //  获得焦点
+     $("#search").focus(function(){
+         if($(this).val()==txt){
+             $(this).val("");
+         }
+     })
+    //  失去焦点
+     $("#search").blur(function(){
+         if($(this).val()==""){
+             $(this).val(txt);
+         }
+     })
+
+})
+//焦点change事件
+$(function () {
+ $('input[type="radio"]').change(function(){
+     //具有true、false属性的checked，selected，disabled，用prop来获取元素
+   var bool = $(this).prop("checked");
+ if(bool){
+      $("#labelp").text("你选择的是：" + $(this).val());
+                }
+            })
+        })
+
+//滚动事件
+    //有bug！！！！！！！！！
+$(function () {
+   //获取box2距离顶部的距离
+  var top = $("#box2").offset().top;
+  //根据滚动距离判断定位
+ $(window).scroll(function () {
+    //当滚动条距离大于box2距离顶部的距离时，设置固定定位
+
+   if ($(this).scrollTop() > top) {
+     $("#box2").css({ "position": "fixed", "top": "0" });
+   }
+ //当滚动条距离小于box2距离顶部的距离时，设置相对定位
+     else {
+      $("#box2").css({ "position": "relative" });
+                }
+            });
+        })
+
+//绑定事件、解绑事件
+$(function () {
+            //添加事件    (绑定)
+            $("#btn").on("click", function(){
+                alert("TEST ON事件绑定")
+            })
+            //解绑事件
+            $("#btn_off").click(function(){
+                $("#btn").off("click");
+                // 清楚#btn的click事件
+                alert("接触之后，click不在生效")
+            });
+        })
+
+//hover
+$(function () {
+            $("h3").hover(function(){
+                $("#testhover").css("display", "block");
+            }, function(){
+                $("#testhover").css("display", "none");
+            })
+        })
+
+//event事件对象
+$(function () {
+            $("#btn1").click(function(e){
+                alert(e.type);    //click
+                console.log(e)
+            })
+        })
+
+        $(function () {
+            $("#testwhich").mousedown(function(e){
+                console.log(e)
+                switch(e.which){
+                    case 1: alert("你点击的是左键");break;
+                    case 2: alert("你点击的是中键");break;
+                    case 3: alert("你点击的是右键");break;
+                }
+            })
+        })
+
+</script>
+</head>
+<body>
+    <div>
+
+<p class="hp">如果你点击“隐藏” 按钮，我将会消失。</p>
+<button id="hide">隐藏</button>
+<button id="show">显示</button>
+       
+<p class="content" id="removeattr">用removeAttr()来删除元素属性</p>
+
+事件基础
+<div>————————————————————————————————————————————————</div>
+
+鼠标事件
+
+<ul>
+    <li>click点击事件</li>
+    <li>mouseover鼠标移入</li>
+    <li>mouseout鼠标移出</li>
+    <li>mousedown鼠标按下</li>
+    <li>mouseup鼠标松开</li>
+    <li>mousemover鼠标移动</li>
+
+</ul>
+<div id="changecolor">test mouseover to changecolor</div>
+
+<div>————————————————————————————————————————————————</div>
+
+键盘事件
+
+<input id="txt" type="text" />
+<div>
+输入的字符串长度为：
+<span id="num">0</span>
+</div>
+
+<div>————————————————————————————————————————————————</div>
+搜索框/焦点事件
+<div>实现鼠标移动点击到搜索框,搜索框中的文字消失</div>
+
+<input id="search" type="text" value="search somethign"/>
+
+<div>
+    <label><input type="radio" name="fruit" value="苹果" />苹果</label>
+    <label><input type="radio" name="fruit" value="香蕉" />香蕉</label>
+    <label><input type="radio" name="fruit" value="西瓜" />西瓜</label>
+</div>
+<p id="labelp"></p>
+
+<div>————————————————————————————————————————————————</div>
+滚动事件<br/>
+固定在频幕的某个位置
+<br />
+<div id="box1">1</div>
+<br />
+<div id="box2">2</div>
+<div>————————————————————————————————————————————————</div>
+绑定和解绑事件
+<br/>
+用于实现一些的自由拖拽div的效果
+<ul>绑定:on()</ul>
+<ul>解绑:off()
+<li>语法:$().off(type)  type表示事件类型("click")</li>
+<li>用来解除"基本事件"方式添加的事件,还可以用来解除“绑定事件”添加的事件。</li>
+</ul>
+<input id="btn" type="button" value="按钮"><br/>
+<input id="btn_off" type="button" value="解除"/>
+<div>————————————————————————————————————————————————</div>
+合并事件
+<ul>移动:hober(fn1,fn2)
+    <li>语法:$().hover(fn1, fn2)</li>
+    <li>参数fn1表示鼠标移入事件触发的处理函数,参数fn2表示鼠标移出事件触发的处理函数。</li>
+   </ul>
+
+    <h3>test</h3>
+    <div id="testhover">totest</div>
+<div>————————————————————————————————————————————————</div>
+event对象
+
+<input id="btn1" type="button" value="展示事件click" />
+<div target="_blank" id="testwhich">查看点击的鼠标键位</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jquery3动画+过滤器</title>
+<style>
+</style>
+
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+// 需要写$(在document).ready.function里面
+// 或者是$(function (){})
+        //this
+$(function () {
+            $("#changecolor").click(function(){
+                //$(this)等价于$("div")
+                $(this).css("color", "red");
+            })
+        })
+
+        //hide和show
+$(function () {
+            $("#btn_hide").click(function(){
+                $("#showornot").hide("fast");
+            })
+            // fast 200  normal 400 slow 600
+            $("#btn_show").click(function () {
+                $("#showornot").show(500);
+            })
+        })
+
+        //fade和out
+$(function () {
+            $("#btn_fade").click(function(){
+                $("#showor").fadeOut();
+            })
+            $("#btn_fadeout").click(function () {
+                $("#showor").fadeIn();
+            })
+        })
+//slide 
+$(function () {
+            //设置一个变量flag用于标记元素状态，是“滑下”还是“滑上”
+            var flag = 0;
+            $("#slide").click(function () {
+                if (flag == 0) {
+                    $("#testslide").slideDown();
+                    flag = 1;
+                }
+                else {
+                    $("#testslide").slideUp();
+                    flag = 0;
+                }
+            });
+        })
+
+//类名过滤器
+ $(function () {
+            $("li").each(function(){
+                var bool = $(this).hasClass("select");
+                var bool2 =$(this).is(":contains('JavaScript')")
+                //判断是否含有select类名
+                if(bool){
+                    $(this).css("color", "red");
+                }
+                //判断是否含有HTML字符部分
+                if (bool2) {
+                    $(this).css("color", "blue");
+                    var result=$(this).val();
+            }
+            })
+        })
+//is()判断过滤器
+        $(function () {
+            $("#selectAll").change(function(){
+                //判断是否勾选
+                var bool = $(this).is(":checked");
+                //返回结果为布尔
+                if(bool){
+                    $(".fruit").prop("checked","true");
+                }else{
+                    $(".fruit").removeProp("checked");
+                }
+            })
+        })
+
+//表达式过滤器       
+        $(function () {
+            $("ol").filter(function(){
+                return $(this).text() == "javascript";
+            }).css("color", "aqua");
+
+            $("ol").has("span").css("color", "red");
+        })
+
+
+</script>
+</head>
+
+
+<body>
+ <div>this事件————this始终指向触发当前事件的元素</div>
+ <div id="changecolor">绿叶，给你初恋般的感觉~</div>
+ <div>————————————————————————————————————————————————</div>
+Jquery动画
+<ul>
+
+<li>显示与隐藏<br/>
+ $().show(speed, fn)<br/>
+$().hide(speed, fn)<br/>
+<input id="btn_hide" type="button" value="隐藏" />
+<input id="btn_show" type="button" value="显示" /><br/>
+<p id="showornot"/> 123456</p>
+</li>
+
+<li>淡入淡出<br/>
+        $().fadeIn(speed, fn)<br/>
+        $().fadeOut(speed, fn)<br/>
+        <li>或者直接使用$().fadeToggle(speed, fn)<br/>
+        表示切换元素显示状态,代表了点击切换为fadein和fadeout<br/></li>     
+        <input id="btn_fade" type="button" value="淡出" />
+        <input id="btn_fadeout" type="button" value="淡入" /><br/>
+       <p id="showor"/> 123456</p>
+
+</li>
+
+<li>滑上与滑下<br/>
+    $().slideUp(speed, fn)<br/>
+    $().slideDown(speed, fn)<br/>
+    $().slideToggle(speed, fn)<br/>
+    <!-- 这里直接使用slideToggle来替代slideup和slidedown<br/> -->
+    <div id="slide" style="width:200px;cursor:pointer;
+    background-color:blue;color:white">testslide</div>
+    <div id="testslide"  style="width:200px;
+    background-color:red;color:white;height:50px;"
+    >12345678</div>
+</li>
+
+</ul>
+<div>————————————————————————————————————————————————</div>
+Jquery过滤器
+<br/>
+each()类名过滤器
+<ul>
+    <li >HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+    <li class="select">jQuery</li>
+    <li>Vue.js</li>
+</ul>
+<div> 
+
+</div>
+
+is()判断过滤器
+<br/>$().is(selector)
+<div>
+    <p>
+    <label><input id="selectAll" type="checkbox"/>全选/反选：</label></p>
+    <label><input type="checkbox" class="fruit" value="苹果" />苹果</label>
+    <label><input type="checkbox" class="fruit" value="香蕉" />香蕉</label>
+    <label><input type="checkbox" class="fruit" value="西瓜" />西瓜</label>
+</div>
+表达式过滤:filter、has()
+<br/>$().filter(selector)
+<br/>$().has(selector)
+<ul>
+    <ol>HTML</ol>
+    <ol>javascript</ol>
+    <ol>CSS</ol>
+    <ol><span>Vue.js</span></ol>
+
+    
+</ul>
+
+</body>
+</html>

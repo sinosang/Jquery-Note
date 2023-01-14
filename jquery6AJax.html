@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery6ajax</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        //get方法
+        $(function () {
+
+            $.ajax({
+                url: "https://geoapi.qweather.com/v2/city/lookup?location=zhangzhou&key=a3499d742e2547fca8b69d26e251689e",
+                type: "get",
+                dataType: "json",
+                data: { username: $(".username").val() },
+                success: function (data) {
+                    //var encrypt = new JSEncrypt();
+                    if (data) {
+                        //正确：直接输出对象
+                        console.log("get_success:", data.location)
+
+                        //不要拼接字符串，不然会变成     data:[Object,Object]
+                        //正确做法：console.log("data.tostring:\n"+JSON.stringify(data))
+
+                        var array = data.location.slice(0, 5)
+                        console.log("get_ARR:", array)
+                        $.each(array, function (key, value) {
+
+                            //自定义一个数组存储get的数组数据
+                            //console.log("each_array:", value.name);
+
+                            $("#location_name").append(key + ":" + value.name)
+                        })
+                    };
+                },
+                //ajax请求出错
+                error: function () {
+                    console.log("error")
+                }, 
+                //ajax请求完成
+                complete: function () {
+                    console.log("complete: get function")
+                },
+                
+            });
+        })
+        // 写作get的post方法
+        $(function () {
+            $("#sendsearch").click(function () {
+                //定义输入的内容
+                var inputsearch = $("#content").val()
+                console.log("post_input_search:", $("#content").val())
+                $.ajax({
+                    url: "https://geoapi.qweather.com/v2/poi/lookup?type=scenic&location=" + inputsearch + "&key=a3499d742e2547fca8b69d26e251689e",
+                    type: "get",
+                    //写作get的post方法传递
+                    dataType: "json",
+                    data: {
+                        inputsearch
+                    },
+                    success: function (data) {
+                        //var encrypt = new JSEncrypt();
+                        if (data) {
+                            //正确：直接输出对象
+                            console.log("post_success:", data.poi)
+                            var array = data.poi.slice(0, 5)
+                            console.log("post_arr:", array)
+                            $.each(array, function (key, value) {
+
+                                //自定义一个数组存储get的数组数据
+                                //console.log("each_array:", value.name);
+                                $("#location_scenic").append(key + ":" + value.name)
+                            })
+                        };
+                    },
+                    error: function () {
+                        console.log("error")
+                    }
+
+                });
+
+            })
+        })
+        //load
+        //有中文,识别不到load
+        // $(function(){
+        //     $("#loadtxt").load("load.txt");
+        // })
+    </script>
+</head>
+
+
+<body>
+    <h1>post</h1>
+
+    <fieldset style="width:25%;">
+        <legend>搜索地名</legend>
+        <!-- <p><label>昵称: <input id="name" type="text" /></label></p> -->
+        <p><label>
+                搜索地名输入:
+                <textarea name="content" id="content" rows="4" cols="30"></textarea>
+            </label></label>
+        </p>
+        <p><input type="button" id="sendsearch" value="提交搜索" /></p>
+    </fieldset>
+    <div style="background-color:whitesmoke;width:100%;" id="location_scenic">
+        location_search_景点:
+    </div>
+
+    <h1>get</h1>
+    <h3>look_location_name</h3>
+    <div style="background-color:whitesmoke;width:50%;" id="location_name">
+        location_name:
+    </div>
+    <h1>load</h1>
+    <div style="background-color:whitesmoke;width:50%;" id="loadtxt">
+        load:有中文路径，没办法识别</div>
+</body>
+
+</html>

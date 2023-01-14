@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery7高级方法</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $(".title li").click(function () {
+                //点击title改变n为li的索引数值 
+                var n = $(this).index();
+                $(".content li").removeClass("current")
+                    .eq(n)
+                    .addClass("current");
+                // 首先$(".content li").removeClass("current")表示移除所有li元素中的“current”这个类名，
+                // 然后eq(n)表示获取索引值为n的li元素，（下标过滤器，滤出n）
+                // 最后addClass("current")表示为索引值为n的li元素添加“current”这个类名。
+            })
+        })
+        //链式调用
+        $(function () {
+            $(".testlist").mouseover(function () {
+                $(this).css("color", "red");
+            }).mouseout(function () {
+                $(this).css("color", "black");
+            })
+        })
+        //jquery与dom
+        $(function () {
+            $("#using").text("jquery:jquery绿叶学习网");
+
+            //jquery的形式更改为了DOM的形式
+            var oLi = $("#using").get();
+            console.log("DOM:",oLi)
+            //无法赋值
+            $("#using2").text(oLi);
+
+ 
+
+            //jquery  dom  具体比较
+            //creat an div element
+            var obj = document.createElement("div");
+
+            //html转换为jquery
+            var objJquery = $(obj);
+            console.log("jquery:",objJquery)
+
+            //jquery转换成html 
+            var objJquery = objJquery[0];
+            console.log("DOM:",objJquery)
+        })
+    </script>
+    <style type="text/css">
+        .title {
+            list-style-type: none;
+            overflow: hidden;
+        }
+
+        .title li {
+            float: left;
+            width: 100px;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+            color: white;
+            cursor: pointer;
+        }
+
+        .title li:nth-child(1) {
+            background-color: hotpink;
+        }
+
+        .title li:nth-child(2) {
+            background-color: lightskyblue;
+        }
+
+        .title li:nth-child(3) {
+            background-color: purple;
+        }
+
+        .content {
+            width: 298px;
+
+        }
+
+        .content li {
+            display: none;
+        }
+
+        li.current {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    jquery7高级方法
+    <div>————————————————————————————————————————————————</div>
+    <ul>
+        <li>
+            $index()<br />
+            可以使用index()方法来获取当前jQuery对象集合中“指定元素”的索引值
+            <div class="wrapper">
+                <ul class="title">
+                    <li>娱乐</li>
+                    <li>经济</li>
+                    <li>军事</li>
+                </ul>
+                <ul class="content">
+                    <li class="current">这是“娱乐”栏目<br />这是“娱乐”栏目<br />这是“娱乐”栏目</li>
+                    <li>这是“经济”栏目<br>这是“经济”栏目<br />这是“经济”栏目</li>
+                    <li>这是“军事”栏目<br />这是“军事”栏目<br />这是“军事”栏目</li>
+                </ul>
+            </div>
+        </li>
+
+        <li>
+            <div>————————————————————————————————————————————————</div>
+            链式调用<br />
+            链式调用的方式来简化操作，代码 ==把原本分开的两个function写在一起
+            <div class="testlist">绿叶学习网</div>
+        </li>
+        <li>
+            <div>————————————————————————————————————————————————</div>
+            jquery对象与dom对象<br />
+            jquery赋值
+            <div id="using"></div>
+            jquery--->dom<br />
+            更改为了DOM,无法赋值
+            <div id="using2"></div>
+        </li>
+
+
+    </ul>
+</body>
+
+</html>
